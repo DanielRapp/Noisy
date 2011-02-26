@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>github.com/danielrapp/noisy</title> 
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="first"></div>
+		<div id="second"></div>
+	
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script src="jquery.noisy.js"></script>
+		<script>
+			$('body').noisy({
+				noiseParticles: 40000, 
+				tileSize: 200, 
+				backgroundColor: '#EDEBDE', 
+				maxNoiseOpacity: 0.078
+			});
+		
+			$('#first').noisy({
+				noiseParticles: 10000, 
+				tileSize: 100, 
+				backgroundColor: '#A9A9A9', 
+				maxNoiseOpacity: 0.078
+			});
+			
+			$('#second').noisy({
+				noiseParticles: 10000, 
+				tileSize: 100, 
+				backgroundColor: '#666', 
+				maxNoiseOpacity: 0.2
+			});
+		</script>
+	</body>
+</html>
