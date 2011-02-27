@@ -13,4 +13,4 @@ Noisy is a jQuery plugin that adds random noise to a given element.
 But since all parameters are optional you can just use it like this:
     $('body').noisy();
 
-You can try a demo [here](http://jsbin.com/awole4).
+You can try a demo [here](http://jsbin.com/ojuno3).
