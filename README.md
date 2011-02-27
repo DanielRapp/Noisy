@@ -1,4 +1,4 @@
-Noisy is a jQuery plugin that adds random to a given element.
+Noisy is a jQuery plugin that adds random noise to a given element.
 
 #### Here's an example:
     $('body').noisy({
