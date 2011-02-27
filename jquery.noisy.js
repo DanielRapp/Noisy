@@ -6,15 +6,16 @@
 	 		    ctx = canvas.getContext("2d");
 	 		
 	 		var defaults = {
-	 			noiseParticles:		400000,
-	 			tileSize:			200,
-	 			backgroundColor:	'',
-	 			maxNoiseOpacity:	20/255
+	 			noiseParticles:     400000,
+	 			tileSize:           200,
+	 			backgroundColor:    '',
+	 			maxNoiseOpacity:    20/255,
+	 			fallbackImage:      undefined
 	 		};
 	 		options = $.extend(defaults, options);
 	 		
-	 		// Use fallback image if canvas isn't supported 
-	 		if ((options.fallbackImage !== undefined) && !!ctx) {
+	 		// Use fallback image if canvas isn't supported
+	 		if ((options.fallbackImage !== undefined) && !ctx) {
 	 			$(this).css('background-image', options.fallbackImage);
 	 			return;
 	 		}
@@ -33,10 +34,10 @@
 	 			    y = rand(1, canvas.height),
 	 			    index = (x + y * imgData.width) * 4;
 	 			
-	 			imgData.data[index  ] = rand(0, 255);							// red
-	 			imgData.data[index+1] = rand(0, 255);							// green
-	 			imgData.data[index+2] = rand(0, 255);							// blue
-	 			imgData.data[index+3] = rand(0, 255*options.maxNoiseOpacity);	// alpha
+	 			imgData.data[index  ] = rand(0, 255);                           // red
+	 			imgData.data[index+1] = rand(0, 255);                           // green
+	 			imgData.data[index+2] = rand(0, 255);                           // blue
+	 			imgData.data[index+3] = rand(0, 255*options.maxNoiseOpacity);   // alpha
 	 		}
 	 		
 	 		ctx.putImageData(imgData, 0, 0);
