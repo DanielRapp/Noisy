@@ -9,4 +9,7 @@ Noisy is a jQuery plugin that adds random noise to a given element.
         fallbackImage: 'fallback.png'
     });
 
+But since all paramiters are optional you can just use it like this:
+    $('body').noisy();
+
 You can try a demo [here](http://jsbin.com/awole4).
