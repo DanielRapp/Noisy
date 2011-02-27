@@ -19,25 +19,27 @@
 		<script src="jquery.noisy.js"></script>
 		<script>
 			$('body').noisy({
-				noiseParticles: 40000, 
+				noise: 1, 
 				tileSize: 200, 
 				backgroundColor: '#EDEBDE', 
 				maxNoiseOpacity: 0.078,
-				fallbackImage: 'fallback.png'
+				fallbackImage: 'fallback.png',
+				monochromatic: true
 			});
 		
 			$('#first').noisy({
-				noiseParticles: 10000, 
+				noise: 1, 
 				tileSize: 100, 
 				backgroundColor: '#A9A9A9', 
 				maxNoiseOpacity: 0.078
 			});
 			
 			$('#second').noisy({
-				noiseParticles: 10000, 
+				noise: 0.5, 
 				tileSize: 100, 
 				backgroundColor: '#666', 
-				maxNoiseOpacity: 0.2
+				maxNoiseOpacity: 0.2,
+				monochromatic: true
 			});
 		</script>
 	</body>
