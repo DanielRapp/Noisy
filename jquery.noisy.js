@@ -43,8 +43,8 @@
 	 		
 	 		// Add black and white pixels at random positions to the canvas
 	 		for (var i = 0; i < options.noise * Math.pow(options.tileSize, 2); i++) {
-	 			var x = rand(1, canvas.width),
-	 			    y = rand(1, canvas.height),
+	 			var x = rand(0, canvas.width),
+	 			    y = rand(0, canvas.height),
 	 			    index = (x + y * imgData.width) * 4;
 	 			
 	 			if (options.monochromatic) var randColorChannel = rand(0, 255);
