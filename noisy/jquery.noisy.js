@@ -5,28 +5,7 @@
 	 		var canvas = document.createElement('canvas'),
 	 		    ctx = canvas.getContext("2d");
 	 		
-	 		var defaults = {
-	 			// How many percent of the image that is filled with noise, 
-	 			//   represented by a number between 0 and 1 inclusive
-	 			noise:              1,
-	 			
-	 			// The width and height of the background image in pixels
-	 			tileSize:           200,
-	 			
-	 			// An empty string is transparent
-	 			backgroundColor:    '',
-	 			
-	 			// The maximum noise particle opacity,
-	 			//   represented by a number between 0 and 1 inclusive
-	 			maxNoiseOpacity:    20/255,
-	 			
-	 			// A string linking to the image used if there's no canvas support
-	 			fallbackImage:      undefined,
-	 			
-	 			// Specifies wheter the particles are grayscale or colorful
-	 			monochromatic:      false
-	 		};
-	 		options = $.extend(defaults, options);
+	 		options = $.extend({}, $.fn.noisy.defaults, options);
 	 		
 	 		// Use fallback image if canvas isn't supported
 	 		if ((options.fallbackImage !== undefined) && !ctx) {
@@ -58,5 +37,27 @@
 	 		ctx.putImageData(imgData, 0, 0);
 	 		$(this).css('background', 'url(' + canvas.toDataURL('image/png') + ')' + options.backgroundColor);
 		});
+	};
+	
+	$.fn.noisy.defaults = {
+		// How many percent of the image that is filled with noise, 
+		//   represented by a number between 0 and 1 inclusive
+		noise:              1,
+		
+		// The width and height of the background image in pixels
+		tileSize:           200,
+		
+		// An empty string is transparent
+		backgroundColor:    '',
+		
+		// The maximum noise particle opacity,
+		//   represented by a number between 0 and 1 inclusive
+		maxNoiseOpacity:    20/255,
+		
+		// A string linking to the image used if there's no canvas support
+		fallbackImage:      undefined,
+		
+		// Specifies wheter the particles are grayscale or colorful
+		monochromatic:      false
 	};
 })(jQuery);
