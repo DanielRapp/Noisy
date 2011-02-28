@@ -26,8 +26,7 @@
 	 			    y = rand(0, canvas.height),
 	 			    index = (x + y * imgData.width) * 4;
 	 			
-	 			if (options.monochromatic) var randColorChannel = rand(0, 255);
-	 			
+	 			var randColorChannel = rand(0, 255);
 	 			imgData.data[index  ] = randColorChannel;                                           // red
 	 			imgData.data[index+1] = options.monochromatic ? randColorChannel : rand(0, 255);    // green
 	 			imgData.data[index+2] = options.monochromatic ? randColorChannel : rand(0, 255);    // blue
