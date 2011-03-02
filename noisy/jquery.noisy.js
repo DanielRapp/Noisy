@@ -8,7 +8,7 @@
 	 		options = $.extend({}, $.fn.noisy.defaults, options);
 	 		
 	 		// Use fallback image if canvas isn't supported
-	 		if ((options.fallbackImage !== undefined) && !ctx) {
+	 		if (!ctx && (options.fallbackImage !== undefined) && (options.fallbackImage !== '')) {
 	 			$(this).css('background-image', options.fallbackImage);
 	 			return;
 	 		}
@@ -30,7 +30,7 @@
 	 			imgData.data[index  ] = randColorChannel;                                           // red
 	 			imgData.data[index+1] = options.monochromatic ? randColorChannel : rand(0, 255);    // green
 	 			imgData.data[index+2] = options.monochromatic ? randColorChannel : rand(0, 255);    // blue
-	 			imgData.data[index+3] = rand(0, 255*options.maxNoiseOpacity);                       // alpha
+	 			imgData.data[index+3] = rand(0, 255 * options.maxNoiseOpacity);                     // alpha
 	 		}
 	 		
 	 		ctx.putImageData(imgData, 0, 0);
@@ -41,7 +41,7 @@
 	$.fn.noisy.defaults = {
 		// How many percent of the image that is filled with noise, 
 		//   represented by a number between 0 and 1 inclusive
-		noise:              1,
+		noise:              0.9,
 		
 		// The width and height of the background image in pixels
 		tileSize:           200,
@@ -51,10 +51,10 @@
 		
 		// The maximum noise particle opacity,
 		//   represented by a number between 0 and 1 inclusive
-		maxNoiseOpacity:    20/255,
+		maxNoiseOpacity:    0.08,
 		
 		// A string linking to the image used if there's no canvas support
-		fallbackImage:      undefined,
+		fallbackImage:      '',
 		
 		// Specifies wheter the particles are grayscale or colorful
 		monochromatic:      false
