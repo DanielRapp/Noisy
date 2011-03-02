@@ -2,6 +2,7 @@
 (function($){
 	// This function adds noise to the background-color attribute of an element
 	$.fn.noisy = function(options) {
+		
 		return this.each(function() {
 	 		var canvas = document.createElement('canvas'),
 	 		    ctx = canvas.getContext("2d");
@@ -33,12 +34,10 @@
 	 			imgData.data[index+2] = options.monochromatic ? randColorChannel : rand(0, 255);    // blue
 	 			imgData.data[index+3] = rand(0, 255 * options.maxNoiseOpacity);                     // alpha
 	 		}
-	 		
 	 		ctx.putImageData(imgData, 0, 0);
-	 		$(this).css('background', 'url(' + canvas.toDataURL('image/png') + ')' + options.backgroundColor);
+	 		$(this).css('background-image', 'url(' + canvas.toDataURL('image/png') + ')' );
 		});
 	};
-	
 	$.fn.noisy.defaults = {
 		// How many percent of the image that is filled with noise, 
 		//   represented by a number between 0 and 1 inclusive
@@ -47,15 +46,9 @@
 		// The width and height of the background image in pixels
 		tileSize:           200,
 		
-		// An empty string is transparent
-		backgroundColor:    '',
-		
 		// The maximum noise particle opacity,
 		//   represented by a number between 0 and 1 inclusive
 		maxNoiseOpacity:    0.08,
-		
-		// A string linking to the image used if there's no canvas support
-		fallbackImage:      '',
 		
 		// Specifies wheter the particles are grayscale or colorful
 		monochromatic:      false
