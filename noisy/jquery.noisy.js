@@ -1,3 +1,4 @@
+//Plan is to make the noise partially transparent and make the bg color the existing color of the element.
 (function($){
 	// This function adds noise to the background-color attribute of an element
 	$.fn.noisy = function(options) {
