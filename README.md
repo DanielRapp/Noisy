@@ -5,6 +5,7 @@ Noisy is a jQuery plugin that adds random noise to a given element.
         noise: 0.9, 
         tileSize: 200, 
         maxNoiseOpacity: 0.078,
+        fallbackImage: '/path/to/fallback.png',
         monochromatic: false
     });
 

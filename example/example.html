@@ -21,26 +21,18 @@
 			$('body').noisy({
 				noise: 1, 
 				tileSize: 200, 
-				backgroundColor: '#EDEBDE', 
 				maxNoiseOpacity: 0.078,
 				fallbackImage: 'fallback.png',
 				monochromatic: true
-			});
+			}).css('background-color', '#EDEBDE');
 		
 			$('#first').noisy({
 				noise: 1, 
 				tileSize: 100, 
-				backgroundColor: '#A9A9A9', 
 				maxNoiseOpacity: 0.078
-			});
+			}).css('background-color', '#A9A9A9');
 			
-			$('#second').noisy({
-				noise: 0.5, 
-				tileSize: 100, 
-				backgroundColor: '#666', 
-				maxNoiseOpacity: 0.2,
-				monochromatic: true
-			});
+			$('#second').noisy().css('background-color', '#666');
 		</script>
 	</body>
 </html>
