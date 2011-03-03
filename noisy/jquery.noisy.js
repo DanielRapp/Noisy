@@ -1,12 +1,15 @@
-// Plan is to make the noise partially transparent and make the bg color the existing color of the element.
 (function($){
+	// This function adds noise to the background-color attribute of an element
 	$.fn.noisy = function(options) {
 		return this.each(function() {
 	 		var canvas = document.createElement('canvas'),
 	 		    ctx = canvas.getContext("2d");
 	 		
-	 		// Do nothing if canvas isn't supported
-	 		if (!ctx) return;
+	 		// Use fallback image if canvas isn't supported
+	 		if (!ctx && (options.fallbackImage !== undefined) && (options.fallbackImage !== '')) {
+	 			$(this).css('background-image', options.fallbackImage);
+	 			return;
+	 		}
 	 		
 	 		options = $.extend({}, $.fn.noisy.defaults, options);
 	 			 		
@@ -44,6 +47,9 @@
 		// The maximum noise particle opacity,
 		//   represented by a number between 0 and 1 inclusive
 		maxNoiseOpacity:    0.08,
+		
+		// A string linking to the image used if there's no canvas support
+		fallbackImage:      '',
 		
 		// Specifies wheter the particles are grayscale or colorful
 		monochromatic:      false
