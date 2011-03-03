@@ -1,5 +1,5 @@
 (function($){
-	// This function adds noise to the background-color attribute of an element
+	// This function adds noise to the background-image attribute of a given element
 	$.fn.noisy = function(options) {
 		return this.each(function() {
 	 		var canvas = document.createElement('canvas'),
@@ -7,7 +7,7 @@
 	 		
 	 		// Use fallback image if canvas isn't supported
 	 		if (!ctx && (options.fallbackImage !== undefined) && (options.fallbackImage !== '')) {
-	 			$(this).css('background-image', options.fallbackImage);
+	 			$(this).css('background-image', 'url(' + options.fallbackImage + ')');
 	 			return;
 	 		}
 	 		
