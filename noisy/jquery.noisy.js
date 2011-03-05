@@ -28,8 +28,8 @@
 	 			
 	 			var randColorChannel = rand(0, 255);
 	 			imgData.data[index  ] = randColorChannel;                                           // red
-	 			imgData.data[index+1] = options.monochromatic ? randColorChannel : rand(0, 255);    // green
-	 			imgData.data[index+2] = options.monochromatic ? randColorChannel : rand(0, 255);    // blue
+	 			imgData.data[index+1] = options.monochrome ? randColorChannel : rand(0, 255);       // green
+	 			imgData.data[index+2] = options.monochrome ? randColorChannel : rand(0, 255);       // blue
 	 			imgData.data[index+3] = rand(0, 255 * options.opacity);                             // alpha
 	 		}
 	 		ctx.putImageData(imgData, 0, 0);
