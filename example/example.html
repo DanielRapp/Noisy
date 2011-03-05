@@ -19,17 +19,17 @@
 		<script src="../noisy/jquery.noisy.js"></script>
 		<script>
 			$('body').noisy({
-				noise: 1, 
-				tileSize: 200, 
-				maxNoiseOpacity: 0.078,
-				fallbackImage: 'fallback.png',
-				monochromatic: true
+				intensity: 1, 
+				size: 200, 
+				opacity: 0.08,
+				fallback: 'fallback.png',
+				monochrome: true
 			}).css('background-color', '#EDEBDE');
 		
 			$('#first').noisy({
-				noise: 1, 
-				tileSize: 100, 
-				maxNoiseOpacity: 0.078
+				intensity: 1, 
+				size: 100, 
+				opacity: 0.08
 			}).css('background-color', '#A9A9A9');
 			
 			$('#second').noisy().css('background-color', '#666');

@@ -2,11 +2,11 @@ Noisy is a jQuery plugin that adds random noise to a given element.
 
 #### Here's an example:
     $('body').noisy({
-        noise: 0.9, 
-        tileSize: 200, 
-        maxNoiseOpacity: 0.08,
-        fallbackImage: 'fallback.png',
-        monochromatic: false
+        intensity: 0.9, 
+        size: 200, 
+        opacity: 0.08,
+        fallback: 'fallback.png',
+        monochrome: false
     });
 
 But since all parameters are optional you can just use it like this:

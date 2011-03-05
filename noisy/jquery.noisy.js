@@ -6,14 +6,14 @@
 	 		    ctx = canvas.getContext("2d");
 	 		
 	 		// Use fallback image if canvas isn't supported
-	 		if (!ctx && (options.fallbackImage !== undefined) && (options.fallbackImage !== '')) {
-	 			$(this).css('background-image', 'url(' + options.fallbackImage + ')');
+	 		if (!ctx && (options.fallback !== undefined) && (options.fallback !== '')) {
+	 			$(this).css('background-image', 'url(' + options.fallback + ')');
 	 			return;
 	 		}
 	 		
 	 		options = $.extend({}, $.fn.noisy.defaults, options);
-	 			 		
-	 		canvas.width = canvas.height = options.tileSize;
+	 		
+	 		canvas.width = canvas.height = options.size;
 	 		var imgData = ctx.createImageData(canvas.width, canvas.height);
 	 		
 	 		var rand = function(min, max) {
@@ -21,7 +21,7 @@
 	 		};
 	 		
 	 		// Add pixels at random positions to the canvas
-	 		for (var i = 0; i < options.noise * Math.pow(options.tileSize, 2); i++) {
+	 		for (var i = 0; i < options.intensity * Math.pow(options.size, 2); i++) {
 	 			var x = rand(0, canvas.width),
 	 			    y = rand(0, canvas.height),
 	 			    index = (x + y * imgData.width) * 4;
@@ -30,7 +30,7 @@
 	 			imgData.data[index  ] = randColorChannel;                                           // red
 	 			imgData.data[index+1] = options.monochromatic ? randColorChannel : rand(0, 255);    // green
 	 			imgData.data[index+2] = options.monochromatic ? randColorChannel : rand(0, 255);    // blue
-	 			imgData.data[index+3] = rand(0, 255 * options.maxNoiseOpacity);                     // alpha
+	 			imgData.data[index+3] = rand(0, 255 * options.opacity);                             // alpha
 	 		}
 	 		ctx.putImageData(imgData, 0, 0);
 	 		$(this).css('background-image', 'url(' + canvas.toDataURL('image/png') + ')');
@@ -39,19 +39,19 @@
 	$.fn.noisy.defaults = {
 		// How many percent of the image that is filled with noise, 
 		//   represented by a number between 0 and 1 inclusive
-		noise:              0.9,
+		intensity:          0.9,
 		
 		// The width and height of the image in pixels
-		tileSize:           200,
+		size:               200,
 		
 		// The maximum noise particle opacity,
 		//   represented by a number between 0 and 1 inclusive
-		maxNoiseOpacity:    0.08,
+		opacity:            0.08,
 		
 		// A string linking to the image used if there's no canvas support
-		fallbackImage:      '',
+		fallback:           '',
 		
 		// Specifies wheter the particles are grayscale or colorful
-		monochromatic:      false
+		monochrome:         false
 	};
 })(jQuery);
