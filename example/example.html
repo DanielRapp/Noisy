@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>github.com/danielrapp/noisy</title> 
-		<style>
-			div {
-				width: 200px;
-				height: 200px;
-			}
-		</style>
-	</head>
-	
-	<body>
-		<div id="first"></div>
-		<div id="second"></div>
-	
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-		<script src="../noisy/jquery.noisy.js"></script>
-		<script>
-			$('body').noisy({
-				intensity: 1, 
-				size: 200, 
-				opacity: 0.08,
-				fallback: 'fallback.png',
-				monochrome: true
-			}).css('background-color', '#EDEBDE');
-		
-			$('#first').noisy({
-				intensity: 1, 
-				size: 100, 
-				opacity: 0.08
-			}).css('background-color', '#A9A9A9');
-			
-			$('#second').noisy().css('background-color', '#666');
-		</script>
-	</body>
+  <head>
+    <meta charset="utf-8">
+    <title>github.com/danielrapp/noisy</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+      }
+      #first {
+        background-color: #ccc;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#999));
+        background-image: -moz-linear-gradient(center top, #ccc, #999);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="first"></div>
+    <div id="second"></div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="../noisy/jquery.noisy.js"></script>
+    <script>
+      $('body').noisy({
+        intensity: 1,
+        size: 200,
+        opacity: 0.08,
+        fallback: 'fallback.png',
+        monochrome: true
+      }).css('background-color', '#EDEBDE').click(function() {
+        $('#first').noisy();
+      });
+
+      $('#first').noisy({
+        intensity: 1,
+        size: 100,
+        opacity: 0.08
+      }).css('background-color', '#A9A9A9');
+
+      $('#second').noisy().css('background-color', '#666');
+    </script>
+  </body>
 </html>
