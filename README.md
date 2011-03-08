@@ -16,9 +16,7 @@ You can try the interactive demo [here](http://rappdaniel.com/other/noisy-sample
 
 Contact
 ----
-I'm just a poor student who did this on my spare time, if you like my script I'd love a few cents to my paypal :) (danielrappt@gmail.com)
-
-But if you don't like paypal for whatever reason, you can use flattr:
+I'd be flattered if you'd flattr this :)
 
 [![Flattr this](http://api.flattr.com/button/flattr-badge-large.png)](http://flattr.com/thing/143004/jQuery-noise-generator)
 
