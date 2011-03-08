@@ -3,7 +3,7 @@
 	$.fn.noisy = function(options) {
 		return this.each(function() {
 	 		var canvas = document.createElement('canvas'),
-	 				ctx = canvas.getContext("2d");
+	 		    ctx = canvas.getContext("2d");
 	 		
 	 		// Use fallback image if canvas isn't supported
 	 		if (!ctx && (options.fallback !== undefined) && (options.fallback !== '')) {
@@ -20,9 +20,8 @@
 			    numPixels = options.intensity * Math.pow(options.size, 2),
 			    maxAlpha = 255 * options.opacity,
 			    rand = function(max) {
-			    	// Supposedly ~~ is faster that parseInt (goo.gl/6DPpt)
 					return Math.floor(Math.random()*max);
-				};
+			    };
 
 	 		// Add pixels at random positions to the canvas
 	 		while (numPixels--) {
