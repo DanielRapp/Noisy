@@ -3,7 +3,7 @@
 	$.fn.noisy = function(options) {
 		options = $.extend({}, $.fn.noisy.defaults, options);
 		
-		var canvas = document.createElement('canvas');
+		var url, canvas = document.createElement('canvas');
 		if (!!canvas.getContext) {
 			canvas.width = canvas.height = options.size;
 		
@@ -11,39 +11,33 @@
 			    imgData = ctx.createImageData(canvas.width, canvas.height),
 			    numPixels = options.intensity * Math.pow(options.size, 2),
 			    maxAlpha = 255 * options.opacity;
+			    
+			// Add pixels at random positions to the canvas
+			while (numPixels--) { // Read about the double bitwise NOT trick here: goo.gl/6DPpt
+				var x = ~~(Math.random()*canvas.width),
+				    y = ~~(Math.random()*canvas.height),
+				    index = (x + y * imgData.width) * 4;
+				
+				var randCol = numPixels % 255;
+				imgData.data[index  ] = randCol;                                               // red
+				imgData.data[index+1] = options.monochrome ? randCol : ~~(Math.random()*255);  // green
+				imgData.data[index+2] = options.monochrome ? randCol : ~~(Math.random()*255);  // blue
+				imgData.data[index+3] = ~~(Math.random()*maxAlpha);                            // alpha
+			}
+			
+			ctx.putImageData(imgData, 0, 0);
+			url = canvas.toDataURL('image/png');
+		}
+		else {
+			url = options.fallback;
 		}
 		
 		return this.each(function() {
-	 		// Use fallback image if canvas isn't supported
-	 		if (!canvas.getContext) {
-	 			if ((options.fallback !== undefined) && (options.fallback !== '')) {
-	 				$(this).css('background-image', 
-	 					'url(' + options.fallback + '),' + 
-	 					$(this).css('background-image'));
-	 			}
-	 			return;
-	 		}
-
-	 		// Add pixels at random positions to the canvas
-	 		while (numPixels--) { // Read about the double bitwise NOT trick here: goo.gl/6DPpt
-	 			var x = ~~(Math.random()*canvas.width),
-	 			    y = ~~(Math.random()*canvas.height),
-	 			    index = (x + y * imgData.width) * 4;
-	 			
-	 			var randCol = numPixels % 255;
-	 			imgData.data[index  ] = randCol;                                               // red
-	 			imgData.data[index+1] = options.monochrome ? randCol : ~~(Math.random()*255);  // green
-	 			imgData.data[index+2] = options.monochrome ? randCol : ~~(Math.random()*255);  // blue
-	 			imgData.data[index+3] = ~~(Math.random()*maxAlpha);                            // alpha
-	 		}
-	 		ctx.putImageData(imgData, 0, 0);
-	 		
 	 		if ($(this).data('original-css') == undefined) {
 	 			$(this).data('original-css', $(this).css('background-image'));
 	 		};
 	 		$(this).css('background-image', 
-	 			'url(' + canvas.toDataURL('image/png') + '),' + 
-	 			$(this).data('original-css'));
+	 			'url(' + url + '),' + $(this).data('original-css'));
 		});
 	};
 	$.fn.noisy.defaults = {
