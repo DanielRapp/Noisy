@@ -1,27 +1,32 @@
 (function($){
 	// This function adds noise to the background-image attribute of a given element
 	$.fn.noisy = function(options) {
+		options = $.extend({}, $.fn.noisy.defaults, options);
+		
+		var canvas = document.createElement('canvas');
+		if (!!canvas.getContext) {
+			canvas.width = canvas.height = options.size;
+		
+			var ctx = canvas.getContext('2d'),
+			    imgData = ctx.createImageData(canvas.width, canvas.height),
+			    numPixels = options.intensity * Math.pow(options.size, 2),
+			    maxAlpha = 255 * options.opacity;
+		}
+		
+		var rand = function(max) {
+			return Math.floor(Math.random()*max);
+		};
+		
 		return this.each(function() {
-	 		var canvas = document.createElement('canvas'),
-	 		    ctx = canvas.getContext("2d");
-	 		
 	 		// Use fallback image if canvas isn't supported
-	 		if (!ctx && (options.fallback !== undefined) && (options.fallback !== '')) {
-	 			$(this).css('background-image', 
-	 				'url(' + options.fallback + '),' + 
-	 				$(this).css('background-image'));
+	 		if (!canvas.getContext) {
+	 			if ((options.fallback !== undefined) && (options.fallback !== '')) {
+	 				$(this).css('background-image', 
+	 					'url(' + options.fallback + '),' + 
+	 					$(this).css('background-image'));
+	 			}
 	 			return;
 	 		}
-	 		
-	 		options = $.extend({}, $.fn.noisy.defaults, options);
-	 		
-	 		canvas.width = canvas.height = options.size;
-			var imgData = ctx.createImageData(canvas.width, canvas.height),
-			    numPixels = options.intensity * Math.pow(options.size, 2),
-			    maxAlpha = 255 * options.opacity,
-			    rand = function(max) {
-					return Math.floor(Math.random()*max);
-			    };
 
 	 		// Add pixels at random positions to the canvas
 	 		while (numPixels--) {
