@@ -13,10 +13,6 @@
 			    maxAlpha = 255 * options.opacity;
 		}
 		
-		var rand = function(max) {
-			return Math.floor(Math.random()*max);
-		};
-		
 		return this.each(function() {
 	 		// Use fallback image if canvas isn't supported
 	 		if (!canvas.getContext) {
@@ -29,16 +25,16 @@
 	 		}
 
 	 		// Add pixels at random positions to the canvas
-	 		while (numPixels--) {
-	 			var x = rand(canvas.width),
-	 			    y = rand(canvas.height),
+	 		while (numPixels--) { // Read about the double bitwise NOT trick here: goo.gl/6DPpt
+	 			var x = ~~(Math.random()*canvas.width),
+	 			    y = ~~(Math.random()*canvas.height),
 	 			    index = (x + y * imgData.width) * 4;
 	 			
-	 			var randColorChannel = rand(255);
-	 			imgData.data[index  ] = randColorChannel;                                        // red
-	 			imgData.data[index+1] = options.monochrome ? randColorChannel : rand(255);       // green
-	 			imgData.data[index+2] = options.monochrome ? randColorChannel : rand(255);       // blue
-	 			imgData.data[index+3] = rand(maxAlpha);                                          // alpha
+	 			var randCol = numPixels % 255;
+	 			imgData.data[index  ] = randCol;                                               // red
+	 			imgData.data[index+1] = options.monochrome ? randCol : ~~(Math.random()*255);  // green
+	 			imgData.data[index+2] = options.monochrome ? randCol : ~~(Math.random()*255);  // blue
+	 			imgData.data[index+3] = ~~(Math.random()*maxAlpha);                            // alpha
 	 		}
 	 		ctx.putImageData(imgData, 0, 0);
 	 		
