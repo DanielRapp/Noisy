@@ -14,6 +14,14 @@ But since all parameters are optional you can just use it like this:
 
 You can try the interactive demo [here](http://rappdaniel.com/other/noisy-sample/).
 
+What's wrong with using an image?
+----
+#### Bandwidth cost
+Due to the random nature of background images with a noisy overlay, compression usually isn't very effective. With this 0.8 kb script you can generate images up to 300 kb. Saving bandwidth costs and loading time.
+
+#### Development speed
+Trying out an image with, for example, a different noise opacity involves a much smaller amount of steps.
+
 Contact
 ----
 I'd be flattered if you'd flattr this :)
