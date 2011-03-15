@@ -3,10 +3,11 @@
 	$.fn.noisy = function(options) {
 		options = $.extend({}, $.fn.noisy.defaults, options);
 		
-		var url, canvas = document.createElement('canvas');
+		var uri, canvas = document.createElement('canvas');
 		
-		if (!canvas.getContext) { // Use fallback image if canvas isn't supported
-			url = options.fallback;
+		// Use fallback image if canvas isn't supported
+		if (!canvas.getContext) {
+			uri = options.fallback;
 		} else {
 			canvas.width = canvas.height = options.size;
 		
@@ -29,15 +30,21 @@
 			}
 			
 			ctx.putImageData(imgData, 0, 0);
-			url = canvas.toDataURL('image/png');
+			uri = canvas.toDataURL('image/png');
+			
+			// In IE < 9 Data URI's are only displayed if they are < 32KB
+			// Though IE < 9 doesn't officially support the canvas element, 
+			//   certain scripts like excanvas.js will enable it and if the URI is > 32KB it won't be displayed
+			if ((uri.indexOf('data:image/png') != 0) || // toDataURL doesn't return anything in Android 2.2
+			    ($.browser.msie && 
+			    ($.browser.version.substr(0,1) < 9) && 
+			    (uri.length > 32000))) {
+				uri = options.fallback;
+			}
 		}
 		
 		return this.each(function() {
-	 		if ($(this).data('original-css') == undefined) {
-	 			$(this).data('original-css', $(this).css('background-image'));
-	 		};
-	 		$(this).css('background-image', 
-	 			'url(' + url + '),' + $(this).data('original-css'));
+	 		$(this).css('background-image', "url('" + uri + "')," + $(this).css('background-image'));
 		});
 	};
 	$.fn.noisy.defaults = {
