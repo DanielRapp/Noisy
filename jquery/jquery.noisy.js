@@ -35,10 +35,10 @@
 			// In IE < 9 Data URI's are only displayed if they are < 32KB
 			// Though IE < 9 doesn't officially support the canvas element, 
 			//   certain scripts like excanvas.js will enable it and if the URI is > 32KB it won't be displayed
-			if ((uri.indexOf('data:image/png') != 0) || // toDataURL doesn't return anything in Android 2.2
-			    ($.browser.msie && 
-			    ($.browser.version.substr(0,1) < 9) && 
-			    (uri.length > 32000))) {
+			if (uri.indexOf('data:image/png') != 0 || // toDataURL doesn't return anything in Android 2.2
+			    $.browser.msie && 
+			    $.browser.version.substr(0,1) < 9 && 
+			    uri.length > 32000) {
 				uri = options.fallback;
 			}
 		}
