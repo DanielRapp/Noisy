@@ -66,7 +66,7 @@ Ext.override(Ext.Element, {
 				if (uri.indexOf('data:image/png') != 0 || // toDataURL doesn't return anything in Android 2.2
 				    $.browser.msie && 
 				    $.browser.version.substr(0,1) < 9 && 
-				    uri.length > 32000) {
+				    uri.length > 32768) {
 					uri = options.fallback;
 				}
 			}
