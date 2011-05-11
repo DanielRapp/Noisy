@@ -21,7 +21,7 @@ Just download the repository and link to the local minimized script
 
     <script src="noisy/jquery/jquery.noisy.min.js"></script>
 
-Or link via cdnjs.com
+Or link via [cdnjs.com](http://cdnjs.com)
 
     <script src="http://ajax.cdnjs.com/ajax/libs/noisy/1.0/jquery.noisy.min.js"></script>
 
