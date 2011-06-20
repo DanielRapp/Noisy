@@ -23,7 +23,7 @@ Just download the repository and link to the local minimized script
 
 Or link via [cdnjs.com](http://cdnjs.com)
 
-    <script src="http://ajax.cdnjs.com/ajax/libs/noisy/1.0/jquery.noisy.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/noisy/1.0/jquery.noisy.min.js"></script>
 
 What's wrong with using an image?
 ----
