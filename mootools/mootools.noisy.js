@@ -121,7 +121,7 @@ var Noisy = new Class({
 	},
 
 	setCachedUri: function(options, uri){
-		this.hasLocalStorage() && localStorage.setItem(JSON.stringify(options), uri);
+		this.hasLocalStorage() && localStorage.setItem(JSON.encode(options), uri);
 
 		return this;
 	},
@@ -167,11 +167,7 @@ Element.Properties.noisy = {
 	},
 
 	get: function(){
-		var noisy = this.retrieve('noisy');
-		if (!noisy){
-			noisy = new Noisy(this);
-			this.store('noisy', noisy);
-		}
+		var noisy = this.retrieve('noisy', new Noisy(this));
 		return noisy;
 	}
 
