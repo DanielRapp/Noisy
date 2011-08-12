@@ -21,8 +21,8 @@ Ext.override(Ext.Element, {
 		
 		var uri, cachedUri;
 		
-		if (JSON && localStorage.getItem) {
-			cachedUri = localStorage.getItem(JSON.stringify(options));
+		if (window.JSON && localStorage.getItem) {
+			cachedUri = localStorage.getItem(window.JSON.stringify(options));
 		}
 		
 		// Use localStorage cache if these options have been used before
