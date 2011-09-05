@@ -19,10 +19,16 @@ Ext.override(Ext.Element, {
 			monochrome:         false
 		}, options);
 		
-		var uri, cachedUri;
+		var uri, localStorageSupported, cachedUri = false;
 		
-		if (window.JSON && localStorage.getItem) {
-			cachedUri = localStorage.getItem(window.JSON.stringify(options));
+		try {
+		    localStorageSupported = 'localStorage' in window && window['localStorage'] !== null;
+		} catch (err) {
+		    localStorageSupported = false;
+		}
+		
+		if (window.JSON && localStorageSupported) {
+		    cachedUri = localStorage.getItem(window.JSON.stringify(options));
 		}
 		
 		// Use localStorage cache if these options have been used before
@@ -71,7 +77,7 @@ Ext.override(Ext.Element, {
 				}
 			}
 			
-			if (JSON && localStorage) {
+			if (JSON && localStorageSupported) {
 				localStorage.setItem(JSON.stringify(options), uri);
 			}
 		}

@@ -131,7 +131,11 @@ var Noisy = new Class({
 	},
 
 	hasLocalStorage: function(){
-		return !!localStorage;
+		try {
+		    return 'localStorage' in window && window['localStorage'] !== null;
+		} catch (err) {
+		    return false;
+		}
 	},
 
 	setCanvas: function(){

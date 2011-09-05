@@ -2,10 +2,16 @@
 	// This function adds noise to the background-image attribute of a given element
 	$.fn.noisy = function(options) {
 		options = $.extend({}, $.fn.noisy.defaults, options);
-		var uri, cachedUri;
+		var uri, localStorageSupported, cachedUri = false;
 		
-		if (window.JSON && localStorage.getItem) {
-			cachedUri = localStorage.getItem(window.JSON.stringify(options));
+		try {
+		    localStorageSupported = 'localStorage' in window && window['localStorage'] !== null;
+		} catch (err) {
+		    localStorageSupported = false;
+		}
+		
+		if (window.JSON && localStorageSupported) {
+		    cachedUri = localStorage.getItem(window.JSON.stringify(options));
 		}
 		
 		// Use localStorage cache if these options have been used before
@@ -54,7 +60,7 @@
 				}
 			}
 			
-			if (window.JSON && localStorage) {
+			if (window.JSON && localStorageSupported) {
 				localStorage.setItem(window.JSON.stringify(options), uri);
 			}
 		}
