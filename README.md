@@ -1,17 +1,22 @@
 Noisy is a jQuery plugin that adds random noise to a given element.
 
 #### Here's an example:
-    $('body').noisy({
-        intensity: 0.9, 
-        size: 200, 
-        opacity: 0.08,
-        fallback: 'fallback.png',
-        monochrome: false
-    });
+````javascript
+$('body').noisy({
+    intensity: 0.9, 
+    size: 200, 
+    opacity: 0.08,
+    fallback: 'fallback.png',
+    monochrome: false
+});
+````
 
-But since all parameters are optional you can just use it like this:
 
-    $('body').noisy();
+But since all parameters are optional you can just use it like this:¨
+
+````javascript
+$('body').noisy();
+````
 
 You can try the interactive demo [here](http://rappdaniel.com/other/noisy-sample/).
 
@@ -19,11 +24,15 @@ Installation
 ----
 Just download the repository and link to the local minimized script
 
-    <script src="noisy/jquery/jquery.noisy.min.js"></script>
+````html
+<script src="noisy/jquery/jquery.noisy.min.js"></script>
+````
 
 Or link via [cdnjs.com](http://cdnjs.com)
 
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/noisy/1.0/jquery.noisy.min.js"></script>
+````html
+<script src="http://cdnjs.cloudflare.com/ajax/libs/noisy/1.0/jquery.noisy.min.js"></script>
+````
 
 What's wrong with using an image?
 ----
