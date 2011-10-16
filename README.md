@@ -12,7 +12,7 @@ $('body').noisy({
 ````
 
 
-But since all parameters are optional you can just use it like this:¨
+But since all parameters are optional you can just use it like this:
 
 ````javascript
 $('body').noisy();
