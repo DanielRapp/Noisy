@@ -5,15 +5,10 @@
 		var uri, localStorageSupported, cachedUri = false;
 		
 		try {
-			localStorage.setItem(mod, mod);
-			localStorage.removeItem(mod);
 			localStorageSupported = true;
+			cachedUri = localStorage.getItem(window.JSON.stringify(options));
 		} catch(e) {
 			localStorageSupported = false;
-		}
-		
-		if (window.JSON && localStorageSupported) {
-		    cachedUri = localStorage.getItem(window.JSON.stringify(options));
 		}
 		
 		// Use localStorage cache if these options have been used before
