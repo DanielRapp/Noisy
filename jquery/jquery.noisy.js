@@ -5,9 +5,11 @@
 		var uri, localStorageSupported, cachedUri = false;
 		
 		try {
-		    localStorageSupported = 'localStorage' in window && window['localStorage'] !== null;
-		} catch (err) {
-		    localStorageSupported = false;
+			localStorage.setItem(mod, mod);
+			localStorage.removeItem(mod);
+			localStorageSupported = true;
+		} catch(e) {
+			localStorageSupported = false;
 		}
 		
 		if (window.JSON && localStorageSupported) {
