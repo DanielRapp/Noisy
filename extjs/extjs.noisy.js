@@ -22,13 +22,10 @@ Ext.override(Ext.Element, {
 		var uri, localStorageSupported, cachedUri = false;
 		
 		try {
-		    localStorageSupported = 'localStorage' in window && window['localStorage'] !== null;
-		} catch (err) {
-		    localStorageSupported = false;
-		}
-		
-		if (window.JSON && localStorageSupported) {
-		    cachedUri = localStorage.getItem(window.JSON.stringify(options));
+			localStorageSupported = true;
+			cachedUri = localStorage.getItem(window.JSON.stringify(options));
+		} catch(e) {
+			localStorageSupported = false;
 		}
 		
 		// Use localStorage cache if these options have been used before
