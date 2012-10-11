@@ -26,6 +26,8 @@ Alternatively, include it from [cdnjs.com](http://cdnjs.com):
 
 ## Usage
 
+An example showing all parameters would be the following:
+
 ````javascript
 $('body').noisy({
     intensity: 0.9, 
