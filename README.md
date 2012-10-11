@@ -30,8 +30,8 @@ An example showing all parameters would be the following:
 
 ````javascript
 $('body').noisy({
-    intensity: 0.9, 
-    size: 200, 
+    intensity: 0.9,
+    size: 200,
     opacity: 0.08,
     fallback: 'fallback.png',
     monochrome: false
