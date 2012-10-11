@@ -27,7 +27,7 @@
 			
 				var ctx = canvas.getContext('2d'),
 				    imgData = ctx.createImageData(canvas.width, canvas.height),
-				    numPixels = options.intensity * Math.pow(options.size, 2),
+				    numPixels = Math.round( options.intensity * Math.pow(options.size, 2) ),
 				    maxAlpha = 255 * options.opacity;
 				    
 				// Add color to random pixels in the canvas
