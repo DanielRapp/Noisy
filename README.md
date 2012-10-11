@@ -39,7 +39,7 @@ Just download the repository and link to the local minimized script:
 Alternatively, include it from [cdnjs.com](http://cdnjs.com):
 
 ````html
-<script src="http://cdnjs.cloudflare.com/ajax/libs/noisy/1.1/jquery.noisy.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/noisy/1.1/jquery.noisy.min.js"></script>
 ````
 
 ## Rationale
