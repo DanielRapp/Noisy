@@ -113,7 +113,7 @@ var Noisy = new Class({
 	},
 
 	getPixelIntensity: function(a, b){
-		return a * Math.pow( b, 2 );
+		return Math.round( a * Math.pow( b, 2 ) );
 	},
 
 	getMaxAlpha: function(a){
