@@ -2,11 +2,29 @@
 
 A jQuery plugin that adds random noise to the background of an element.
 
-## Dependencies
+## Demo
+
+You can try the [interactive demo](http://rappdaniel.com/other/noisy-sample/).
+
+## Dependency
 
 -   [jQuery](https://github.com/jquery/jquery)
 
-## Example Usage
+## Install
+
+Just download the repository and link to the local minimized script:
+
+````html
+<script src="noisy/jquery/jquery.noisy.min.js"></script>
+````
+
+Alternatively, include it from [cdnjs.com](http://cdnjs.com):
+
+````html
+<script src="//cdnjs.cloudflare.com/ajax/libs/noisy/1.1/jquery.noisy.min.js"></script>
+````
+
+## Usage
 
 ````javascript
 $('body').noisy({
@@ -22,24 +40,6 @@ But since all parameters are optional you can just use it like this:
 
 ````javascript
 $('body').noisy();
-````
-
-## Demo
-
-You can try the [interactive demo](http://rappdaniel.com/other/noisy-sample/).
-
-## Installation
-
-Just download the repository and link to the local minimized script:
-
-````html
-<script src="noisy/jquery/jquery.noisy.min.js"></script>
-````
-
-Alternatively, include it from [cdnjs.com](http://cdnjs.com):
-
-````html
-<script src="//cdnjs.cloudflare.com/ajax/libs/noisy/1.1/jquery.noisy.min.js"></script>
 ````
 
 ## Rationale
@@ -64,7 +64,7 @@ What's wrong with using an image?
 
 If you have any questions or suggestions that don't fit GitHub, send them to [@DanielRapp](http://twitter.com/DanielRapp)
 
-## Supporting
+## Support
 
 I'd be flattered if you'd flattr this :)
 
