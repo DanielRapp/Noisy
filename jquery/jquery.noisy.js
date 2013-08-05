@@ -6,6 +6,8 @@
 		
 		try {
 			localStorageSupported = true;
+			localStorage.setItem("test", "");
+			localStorage.removeItem("test");
 			cachedUri = localStorage.getItem(window.JSON.stringify(options));
 		} catch(e) {
 			localStorageSupported = false;
