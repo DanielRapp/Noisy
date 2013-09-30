@@ -1,4 +1,5 @@
 (function($){
+
 	// This function adds noise to the background-image attribute of a given element
 	$.fn.noisy = function(options) {
 		options = $.extend({}, $.fn.noisy.defaults, options);
@@ -37,12 +38,20 @@
 					var x = ~~(Math.random()*canvas.width),
 					    y = ~~(Math.random()*canvas.height),
 					    index = (x + y * imgData.width) * 4;
-					
-					var colorChannel = numPixels % 255; // This will look random enough
-					imgData.data[index  ] = colorChannel;                                               // red
-					imgData.data[index+1] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // green
-					imgData.data[index+2] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // blue
-					imgData.data[index+3] = ~~(Math.random()*maxAlpha);                                 // alpha
+
+          if (options.randomColors) {
+            var colorChannel = numPixels % 255; // This will look random enough
+            imgData.data[index] = colorChannel;                                               // red
+            imgData.data[index+1] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // green
+            imgData.data[index+2] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // blue
+            imgData.data[index+3] = ~~(Math.random()*maxAlpha);                                 // alpha
+          } else {
+            var rgb = hexToRgb(options.color);
+            imgData.data[index] = rgb.r;
+            imgData.data[index+1] = rgb.g;
+            imgData.data[index+1] = rgb.b;
+            imgData.data[index+3] = ~~(Math.random()*maxAlpha);                                 // alpha
+          }
 				}
 				
 				ctx.putImageData(imgData, 0, 0);
@@ -58,6 +67,15 @@
 				localStorage.setItem(window.JSON.stringify(options), uri);
 			}
 		}
+
+    function hexToRgb(hex) {
+        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
+    }
 		
 		return this.each(function() {
 	 		$(this).css('background-image', "url('" + uri + "')," + $(this).css('background-image'));
@@ -79,6 +97,12 @@
 		fallback:           '',
 		
 		// Specifies wheter the particles are grayscale or colorful
-		monochrome:         false
+    monochrome:         false,
+
+    // Specifies where the particles color are random or not, you can set color with color option
+    randomColors: false,
+
+    // Particles color
+    color: '#000000'
 	};
 })(jQuery);
