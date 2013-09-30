@@ -3,6 +3,10 @@
 	// This function adds noise to the background-image attribute of a given element
 	$.fn.noisy = function(options) {
 		options = $.extend({}, $.fn.noisy.defaults, options);
+    // set randomColors to false if you set color option
+    if ( typeof options.color !== 'undefined' ) {
+      options.randomColors = false;
+    }
 		var uri, localStorageSupported, cachedUri = false;
 		
 		try {
