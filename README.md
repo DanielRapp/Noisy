@@ -51,7 +51,7 @@ $('body').noisy({
     size: 200,
     opacity: 0.08,
     fallback: 'fallback.png',
-    randomColors: false, // false by default
+    randomColors: false, // true by default
     color: '#000000'
 });
 ````

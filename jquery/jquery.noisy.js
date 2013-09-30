@@ -49,8 +49,8 @@
             var rgb = hexToRgb(options.color);
             imgData.data[index] = rgb.r;
             imgData.data[index+1] = rgb.g;
-            imgData.data[index+1] = rgb.b;
-            imgData.data[index+3] = ~~(Math.random()*maxAlpha);                                 // alpha
+            imgData.data[index+2] = rgb.b;
+            imgData.data[index+3] = ~~(Math.random()*maxAlpha);
           }
 				}
 				
@@ -78,7 +78,7 @@
     }
 		
 		return this.each(function() {
-	 		$(this).css('background-image', "url('" + uri + "')," + $(this).css('background-image'));
+      $(this).css('background-image', "url('" + uri + "')," + $(this).css('background-image'));
 		});
 	};
 	$.fn.noisy.defaults = {
@@ -100,7 +100,7 @@
     monochrome:         false,
 
     // Specifies where the particles color are random or not, you can set color with color option
-    randomColors: false,
+    randomColors: true,
 
     // Particles color
     color: '#000000'
