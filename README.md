@@ -44,6 +44,19 @@ But since all parameters are optional you can just use it like this:
 $('body').noisy();
 ````
 
+You can also set a particles color with color option like this:
+````javascript
+$('body').noisy({
+    intensity: 0.9,
+    size: 200,
+    opacity: 0.08,
+    fallback: 'fallback.png',
+    randomColors: false, // true by default
+    color: '#000000'
+});
+````
+This works, for now, just with jquery version.
+
 ## Rationale
 
 What's wrong with using an image?
