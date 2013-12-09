@@ -1,12 +1,12 @@
 (function($){
-
-	// This function adds noise to the background-image attribute of a given element
+	
 	$.fn.noisy = function(options) {
 		options = $.extend({}, $.fn.noisy.defaults, options);
-    // set randomColors to false if you set color option
-    if ( typeof options.color !== 'undefined' ) {
-      options.randomColors = false;
-    }
+		
+		// set randomColors to false if you set color option
+		if ( typeof options.color !== 'undefined' ) {
+			options.randomColors = false;
+		}
 		var uri, localStorageSupported, cachedUri = false;
 		
 		try {
@@ -43,19 +43,19 @@
 					    y = ~~(Math.random()*canvas.height),
 					    index = (x + y * imgData.width) * 4;
 
-          if (options.randomColors) {
-            var colorChannel = numPixels % 255; // This will look random enough
-            imgData.data[index] = colorChannel;                                               // red
-            imgData.data[index+1] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // green
-            imgData.data[index+2] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // blue
-            imgData.data[index+3] = ~~(Math.random()*maxAlpha);                                 // alpha
-          } else {
-            var rgb = hexToRgb(options.color);
-            imgData.data[index] = rgb.r;
-            imgData.data[index+1] = rgb.g;
-            imgData.data[index+2] = rgb.b;
-            imgData.data[index+3] = ~~(Math.random()*maxAlpha);
-          }
+					if (options.randomColors) {
+						var colorChannel = numPixels % 255; // This will look random enough
+						imgData.data[index] = colorChannel;                                               // red
+						imgData.data[index+1] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // green
+						imgData.data[index+2] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // blue
+						imgData.data[index+3] = ~~(Math.random()*maxAlpha);                                 // alpha
+					} else {
+						var rgb = hexToRgb(options.color);
+						imgData.data[index] = rgb.r;
+						imgData.data[index+1] = rgb.g;
+						imgData.data[index+2] = rgb.b;
+				        	imgData.data[index+3] = ~~(Math.random()*maxAlpha);
+					}
 				}
 				
 				ctx.putImageData(imgData, 0, 0);
@@ -72,17 +72,17 @@
 			}
 		}
 
-    function hexToRgb(hex) {
-        var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-        } : null;
-    }
+		function hexToRgb(hex) {
+			var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+			return result ? {
+				r: parseInt(result[1], 16),
+				g: parseInt(result[2], 16),
+				b: parseInt(result[3], 16)
+			} : null;
+		}
 		
 		return this.each(function() {
-      $(this).css('background-image', "url('" + uri + "')," + $(this).css('background-image'));
+			$(this).css('background-image', "url('" + uri + "')," + $(this).css('background-image'));
 		});
 	};
 	$.fn.noisy.defaults = {
@@ -101,12 +101,9 @@
 		fallback:           '',
 		
 		// Specifies wheter the particles are grayscale or colorful
-    monochrome:         false,
+		monochrome:         false,
 
-    // Specifies where the particles color are random or not, you can set color with color option
-    randomColors: true,
-
-    // Particles color
-    color: '#000000'
+		// Specifies where the particles color are random or not, you can set color with color option
+		randomColors: true
 	};
 })(jQuery);
