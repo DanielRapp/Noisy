@@ -19,7 +19,7 @@
 		}
 		
 		// Use localStorage cache if these options have been used before
-		if (cachedUri) {
+		if (cachedUri && !options.disableCache) {
 			uri = cachedUri;
 		}
 		else {
@@ -45,6 +45,12 @@
 
 					if (options.randomColors) {
 						var colorChannel = numPixels % 255; // This will look random enough
+						if (options.colorChannels === parseInt(options.colorChannels)) {
+							colorChannel = numPixels % options.colorChannels;
+						} else if ($.isArray(options.colorChannels)) {
+							colorChannel = options.colorChannels[0] + (numPixels % (options.colorChannels[1]-options.colorChannels[0]));
+						}
+						
 						imgData.data[index] = colorChannel;                                               // red
 						imgData.data[index+1] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // green
 						imgData.data[index+2] = options.monochrome ? colorChannel : ~~(Math.random()*255);  // blue
@@ -67,8 +73,12 @@
 				}
 			}
 			
-			if (window.JSON && localStorageSupported) {
-				localStorage.setItem(window.JSON.stringify(options), uri);
+			if (window.JSON && localStorageSupported && !options.disableCache) {
+				try {
+					localStorage.setItem(window.JSON.stringify(options), uri);
+				} catch(e) {
+					console.warn(e.message);
+				}
 			}
 		}
 
@@ -102,8 +112,16 @@
 		
 		// Specifies wheter the particles are grayscale or colorful
 		monochrome:         false,
+		
+		// The range of color channels to use for random color and monochrome noise
+		//   if a number, sets the upper range (max 255)
+		//   if an array, e.g. [200,255], sets the lower and upper range
+		colorChannels:     255,
 
 		// Specifies where the particles color are random or not, you can set color with color option
-		randomColors: true
+		randomColors:      true,
+		
+		// Disables the use of localStorage if enabled (good when trying different settings)
+		disableCache:      false
 	};
 })(jQuery);
