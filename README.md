@@ -55,7 +55,7 @@ $('body').noisy({
     color: '#000000'
 });
 ````
-This works, for now, just with jquery version.
+This works, for now, just with the jquery version.
 
 ## Rationale
 
