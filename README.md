@@ -2,10 +2,6 @@
 
 A jQuery plugin that adds random noise to the background of an element.
 
-## Demo
-
-You can try the [interactive demo](http://rappdaniel.com/other/noisy-sample/).
-
 ## Dependency
 
 -   [jQuery](https://github.com/jquery/jquery)
